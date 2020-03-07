@@ -7,9 +7,9 @@ extern crate specs;
 
 extern crate ecs_bench;
 
-use specs::{World, Entity, Component, Join, ReadStorage, RunNow, System, VecStorage, WriteStorage};
+use specs::prelude::*;
 
-use ecs_bench::pos_vel::{Position, Velocity, N_POS_PER_VEL, N_POS};
+use ecs_bench::pos_vel::{Position, Velocity, N_POS, N_POS_PER_VEL};
 
 struct PosComp(Position);
 impl Component for PosComp {
@@ -41,13 +41,17 @@ fn build() -> (World, VelSys) {
     {
         let ents: Vec<Entity> = w.create_iter().take(N_POS).collect();
 
-        let mut positions = w.write::<PosComp>();
-        let mut velocities = w.write::<VelComp>();
+        let mut positions = w.write_storage::<PosComp>();
+        let mut velocities = w.write_storage::<VelComp>();
 
         for (i, e) in ents.iter().enumerate() {
-            positions.insert(*e, PosComp(Position { x: 0.0, y: 0.0 }));
+            positions
+                .insert(*e, PosComp(Position { x: 0.0, y: 0.0 }))
+                .unwrap();
             if i % N_POS_PER_VEL == 0 {
-                velocities.insert(*e, VelComp(Velocity { dx: 0.0, dy: 0.0 }));
+                velocities
+                    .insert(*e, VelComp(Velocity { dx: 0.0, dy: 0.0 }))
+                    .unwrap();
             }
         }
     }
@@ -66,6 +70,6 @@ fn bench_update(b: &mut Bencher) {
     let (world, mut sys) = build();
 
     b.iter(|| {
-        sys.run_now(&world.res);
+        sys.run_now(&world);
     });
 }

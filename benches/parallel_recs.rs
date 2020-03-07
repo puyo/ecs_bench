@@ -10,7 +10,7 @@ extern crate ecs_bench;
 
 use recs::{Ecs, EntityId};
 
-use ecs_bench::parallel::{R, W1, W2, N};
+use ecs_bench::parallel::{N, R, W1, W2};
 
 fn build() -> Ecs {
     let mut system: Ecs = Ecs::new();

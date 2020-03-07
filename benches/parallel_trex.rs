@@ -5,10 +5,10 @@ use test::Bencher;
 #[macro_use]
 extern crate trex;
 
-use trex::{System, EventQueue, EventEmitter, Simulation, World, ComponentFilter};
+use trex::{ComponentFilter, EventEmitter, EventQueue, Simulation, System, World};
 
 extern crate ecs_bench;
-use ecs_bench::parallel::{R, W1, W2, N};
+use ecs_bench::parallel::{N, R, W1, W2};
 
 pub struct RComp(R);
 pub struct W1Comp(W1);
@@ -22,19 +22,19 @@ pub struct W1System {
 impl W1System {
     pub fn new() -> W1System {
         W1System {
-            filter: ComponentFilter::new()
-                        .with::<RComp>()
-                        .with::<W1Comp>(),
+            filter: ComponentFilter::new().with::<RComp>().with::<W1Comp>(),
         }
     }
 }
 
 impl System for W1System {
-    fn update(&mut self,
-              world: &mut World,
-              _queue: &EventQueue,
-              _emitter: &mut EventEmitter,
-              _dt: f32) {
+    fn update(
+        &mut self,
+        world: &mut World,
+        _queue: &EventQueue,
+        _emitter: &mut EventEmitter,
+        _dt: f32,
+    ) {
         for entity in world.filter(&self.filter) {
             let &RComp(R { x }) = world.get(entity).unwrap();
             let mut w1 = world.get_mut::<W1Comp>(entity).unwrap();
@@ -50,19 +50,19 @@ pub struct W2System {
 impl W2System {
     pub fn new() -> W2System {
         W2System {
-            filter: ComponentFilter::new()
-                        .with::<RComp>()
-                        .with::<W2Comp>(),
+            filter: ComponentFilter::new().with::<RComp>().with::<W2Comp>(),
         }
     }
 }
 
 impl System for W2System {
-    fn update(&mut self,
-              world: &mut World,
-              _queue: &EventQueue,
-              _emitter: &mut EventEmitter,
-              _dt: f32) {
+    fn update(
+        &mut self,
+        world: &mut World,
+        _queue: &EventQueue,
+        _emitter: &mut EventEmitter,
+        _dt: f32,
+    ) {
         for entity in world.filter(&self.filter) {
             let &RComp(R { x }) = world.get(entity).unwrap();
             let mut w2 = world.get_mut::<W2Comp>(entity).unwrap();

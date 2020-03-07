@@ -10,7 +10,7 @@ extern crate ecs_bench;
 
 use recs::{Ecs, EntityId};
 
-use ecs_bench::pos_vel::{Position, Velocity, N_POS_PER_VEL, N_POS};
+use ecs_bench::pos_vel::{Position, Velocity, N_POS, N_POS_PER_VEL};
 
 fn build() -> Ecs {
     let mut system: Ecs = Ecs::new();

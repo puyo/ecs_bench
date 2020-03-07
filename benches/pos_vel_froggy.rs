@@ -3,12 +3,12 @@
 extern crate test;
 use test::Bencher;
 
-extern crate froggy;
 extern crate ecs_bench;
+extern crate froggy;
 
 use froggy::{Pointer, Storage};
 
-use ecs_bench::pos_vel::{Position, Velocity, N_POS_PER_VEL, N_POS};
+use ecs_bench::pos_vel::{Position, Velocity, N_POS, N_POS_PER_VEL};
 
 struct Entity {
     pos: Pointer<Position>,
@@ -29,7 +29,7 @@ fn build() -> World {
     };
 
     // setup entities
-    for i in 0 .. N_POS {
+    for i in 0..N_POS {
         let vel = if i % N_POS_PER_VEL == 0 {
             Some(world.vel.create(Velocity { dx: 0.0, dy: 0.0 }))
         } else {

@@ -9,10 +9,9 @@ extern crate specs;
 extern crate ecs_bench;
 
 use rayon::prelude::*;
-use specs::{World, Entity, Component, Dispatcher, DispatcherBuilder, ParJoin, ReadStorage, System,
-            VecStorage, WriteStorage};
+use specs::prelude::*;
 
-use ecs_bench::parallel::{R, W1, W2, N};
+use ecs_bench::parallel::{N, R, W1, W2};
 
 struct RComp(R);
 impl Component for RComp {
@@ -59,20 +58,20 @@ fn build() -> (World, Dispatcher<'static, 'static>) {
     {
         let ents: Vec<Entity> = w.create_iter().take(N).collect();
 
-        let mut rs = w.write::<RComp>();
-        let mut w1s = w.write::<W1Comp>();
-        let mut w2s = w.write::<W2Comp>();
+        let mut rs = w.write_storage::<RComp>();
+        let mut w1s = w.write_storage::<W1Comp>();
+        let mut w2s = w.write_storage::<W2Comp>();
 
         for e in ents {
-            rs.insert(e, RComp(R { x: 0.0 }));
-            w1s.insert(e, W1Comp(W1 { x: 0.0 }));
-            w2s.insert(e, W2Comp(W2 { x: 0.0 }));
+            rs.insert(e, RComp(R { x: 0.0 })).unwrap();
+            w1s.insert(e, W1Comp(W1 { x: 0.0 })).unwrap();
+            w2s.insert(e, W2Comp(W2 { x: 0.0 })).unwrap();
         }
     }
 
     let dispatcher = DispatcherBuilder::new()
-        .add(Sys1, "sys1", &[])
-        .add(Sys2, "sys2", &[])
+        .with(Sys1, "sys1", &[])
+        .with(Sys2, "sys2", &[])
         .build();
     (w, dispatcher)
 }
@@ -85,8 +84,8 @@ fn bench_build(b: &mut Bencher) {
 #[bench]
 fn bench_update(b: &mut Bencher) {
     let (mut world, mut dispatcher) = build();
-    
+
     b.iter(|| {
-        dispatcher.dispatch(&mut world.res);
+        dispatcher.dispatch(&mut world);
     });
 }

@@ -9,7 +9,7 @@ extern crate ecs_bench;
 
 use constellation::{SystemCommandBuffer, VecResource, World};
 
-use ecs_bench::parallel::{R, W1, W2, N};
+use ecs_bench::parallel::{N, R, W1, W2};
 
 type Rs = VecResource<R>;
 type W1s = VecResource<W1>;

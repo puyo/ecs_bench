@@ -3,16 +3,30 @@ extern crate test;
 use test::Bencher;
 
 #[macro_use]
-extern crate calx_ecs;
-#[macro_use]
 extern crate serde_derive;
 extern crate serde;
 
-extern crate ecs_bench;
+#[macro_use]
+extern crate calx_ecs;
 
 use calx_ecs::Entity;
 
-use ecs_bench::parallel::{R, W1, W2, N};
+pub const N: usize = 10000;
+
+#[derive(Copy, Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct R {
+    pub x: f32,
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct W1 {
+    pub x: f32,
+}
+
+#[derive(Copy, Clone, Debug, PartialEq, Serialize, Deserialize)]
+pub struct W2 {
+    pub x: f32,
+}
 
 Ecs! {
     r: R,
@@ -35,7 +49,7 @@ fn build() -> Ecs {
 
 #[bench]
 fn bench_build(b: &mut Bencher) {
-    b.iter(|| build());
+    b.iter(build);
 }
 
 #[bench]

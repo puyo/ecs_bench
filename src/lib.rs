@@ -21,7 +21,6 @@ pub mod pos_vel {
         pub dx: f32,
         pub dy: f32,
     }
-
 }
 
 pub mod parallel {

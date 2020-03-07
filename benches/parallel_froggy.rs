@@ -3,13 +3,13 @@
 extern crate test;
 use test::Bencher;
 
-extern crate froggy;
 extern crate ecs_bench;
+extern crate froggy;
 
 use froggy::{Pointer, Storage};
 use std::sync::{Arc, Mutex};
 
-use ecs_bench::parallel::{R, W1, W2, N};
+use ecs_bench::parallel::{N, R, W1, W2};
 
 struct Entity {
     r: Pointer<R>,
@@ -30,11 +30,13 @@ fn build() -> World {
     let mut w2 = Storage::with_capacity(N);
 
     // setup entities
-    let entities = (0 .. N).map(|_| Entity {
-        r: r.create(R { x: 0.0 }),
-        w1: w1.create(W1 { x: 0.0 }),
-        w2: w2.create(W2 { x: 0.0 }),
-    }).collect();
+    let entities = (0..N)
+        .map(|_| Entity {
+            r: r.create(R { x: 0.0 }),
+            w1: w1.create(W1 { x: 0.0 }),
+            w2: w2.create(W2 { x: 0.0 }),
+        })
+        .collect();
 
     // finish processing
     r.sync_pending();

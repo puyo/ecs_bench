@@ -9,10 +9,10 @@ extern crate ecs;
 extern crate ecs_bench;
 
 use ecs::system::{EntityProcess, EntitySystem, System};
-use ecs::{DataHelper, EntityIter, World};
 use ecs::BuildData;
+use ecs::{DataHelper, EntityIter, World};
 
-use ecs_bench::pos_vel::{Position, Velocity, N_POS_PER_VEL, N_POS};
+use ecs_bench::pos_vel::{Position, Velocity, N_POS, N_POS_PER_VEL};
 
 components! {
     struct MyComponents {
@@ -29,9 +29,11 @@ impl System for Physics {
 }
 
 impl EntityProcess for Physics {
-    fn process(&mut self,
-               entities: EntityIter<MyComponents>,
-               data: &mut DataHelper<MyComponents, ()>) {
+    fn process(
+        &mut self,
+        entities: EntityIter<MyComponents>,
+        data: &mut DataHelper<MyComponents, ()>,
+    ) {
         for e in entities {
             let mut position = data.position[e];
             let velocity = data.velocity[e];
@@ -50,9 +52,11 @@ impl System for Render {
 }
 
 impl EntityProcess for Render {
-    fn process(&mut self,
-               entities: EntityIter<MyComponents>,
-               data: &mut DataHelper<MyComponents, ()>) {
+    fn process(
+        &mut self,
+        entities: EntityIter<MyComponents>,
+        data: &mut DataHelper<MyComponents, ()>,
+    ) {
         for e in entities {
             let _ = data.position[e];
         }

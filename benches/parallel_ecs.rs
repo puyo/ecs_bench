@@ -9,10 +9,10 @@ extern crate ecs;
 extern crate ecs_bench;
 
 use ecs::system::{EntityProcess, EntitySystem, System};
-use ecs::{DataHelper, EntityIter, World};
 use ecs::BuildData;
+use ecs::{DataHelper, EntityIter, World};
 
-use ecs_bench::parallel::{R, W1, W2, N};
+use ecs_bench::parallel::{N, R, W1, W2};
 
 components! {
     struct MyComponents {
@@ -30,9 +30,11 @@ impl System for W1System {
 }
 
 impl EntityProcess for W1System {
-    fn process(&mut self,
-               entities: EntityIter<MyComponents>,
-               data: &mut DataHelper<MyComponents, ()>) {
+    fn process(
+        &mut self,
+        entities: EntityIter<MyComponents>,
+        data: &mut DataHelper<MyComponents, ()>,
+    ) {
         for e in entities {
             let mut w1 = data.w1[e];
             let r = data.r[e];
@@ -50,9 +52,11 @@ impl System for W2System {
 }
 
 impl EntityProcess for W2System {
-    fn process(&mut self,
-               entities: EntityIter<MyComponents>,
-               data: &mut DataHelper<MyComponents, ()>) {
+    fn process(
+        &mut self,
+        entities: EntityIter<MyComponents>,
+        data: &mut DataHelper<MyComponents, ()>,
+    ) {
         for e in entities {
             let mut w2 = data.w2[e];
             let r = data.r[e];

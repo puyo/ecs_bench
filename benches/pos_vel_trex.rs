@@ -5,10 +5,10 @@ use test::Bencher;
 #[macro_use]
 extern crate trex;
 
-use trex::{System, EventQueue, EventEmitter, Simulation, World, ComponentFilter};
+use trex::{ComponentFilter, EventEmitter, EventQueue, Simulation, System, World};
 
 extern crate ecs_bench;
-use ecs_bench::pos_vel::{Position, Velocity, N_POS_PER_VEL, N_POS};
+use ecs_bench::pos_vel::{Position, Velocity, N_POS, N_POS_PER_VEL};
 
 pub struct PosComp(Position);
 pub struct VelComp(Velocity);
@@ -22,19 +22,19 @@ pub struct PhysicsSystem {
 impl PhysicsSystem {
     pub fn new() -> PhysicsSystem {
         PhysicsSystem {
-            filter: ComponentFilter::new()
-                        .with::<PosComp>()
-                        .with::<VelComp>(),
+            filter: ComponentFilter::new().with::<PosComp>().with::<VelComp>(),
         }
     }
 }
 
 impl System for PhysicsSystem {
-    fn update(&mut self,
-              world: &mut World,
-              _queue: &EventQueue,
-              _emitter: &mut EventEmitter,
-              _dt: f32) {
+    fn update(
+        &mut self,
+        world: &mut World,
+        _queue: &EventQueue,
+        _emitter: &mut EventEmitter,
+        _dt: f32,
+    ) {
         for entity in world.filter(&self.filter) {
             let &VelComp(Velocity { dx, dy }) = world.get(entity).unwrap();
             let mut pos = world.get_mut::<PosComp>(entity).unwrap();
@@ -50,16 +50,20 @@ pub struct RenderSystem {
 
 impl RenderSystem {
     pub fn new() -> RenderSystem {
-        RenderSystem { filter: ComponentFilter::new().with::<PosComp>() }
+        RenderSystem {
+            filter: ComponentFilter::new().with::<PosComp>(),
+        }
     }
 }
 
 impl System for RenderSystem {
-    fn update(&mut self,
-              world: &mut World,
-              _queue: &EventQueue,
-              _emitter: &mut EventEmitter,
-              _dt: f32) {
+    fn update(
+        &mut self,
+        world: &mut World,
+        _queue: &EventQueue,
+        _emitter: &mut EventEmitter,
+        _dt: f32,
+    ) {
         for entity in world.filter(&self.filter) {
             world.get::<PosComp>(entity);
         }
