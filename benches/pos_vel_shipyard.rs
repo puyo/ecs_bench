@@ -26,9 +26,13 @@ fn build() -> World {
         (&mut positions, &mut velocities).tight_pack();
 
         for i in 0..N_POS {
-            entities.add_entity(&mut positions, Position { x: 0., y: 0. });
             if i % N_POS_PER_VEL == 0 {
-                entities.add_entity(&mut velocities, Velocity { dx: 0., dy: 0. });
+                entities.add_entity(
+                    (&mut positions, &mut velocities),
+                    (Position { x: 0., y: 0. }, Velocity { dx: 0., dy: 0. }),
+                );
+            } else {
+                entities.add_entity(&mut positions, Position { x: 0., y: 0. });
             }
         }
     }
