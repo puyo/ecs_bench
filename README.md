@@ -7,12 +7,13 @@ Benchmarks are located in `benches/[bench_name]_[ecs_crate_name].rs`.
 
  Library         | pos_vel build                 | pos_vel update                 | parallel build                 | parallel update
  --------------- |:-----------------------------:|:------------------------------:|:------------------------------:|:--------------------------------:
- [calx-ecs]      | 228 µs/iter (+/- 7)      | 18 µs/iter (+/- 0)      | 385 µs/iter (+/- 18)      | 76 µs/iter (+/- 1)
- [constellation] | 280 µs/iter (+/- 8) | 8 µs/iter (+/- 0) | 455 µs/iter (+/- 6) | 152 µs/iter (+/- 13)
- [ecs]           | 1,452 µs/iter (+/- 39)           | 324 µs/iter (+/- 29)           | 1,380 µs/iter (+/- 29)           | 3,644 µs/iter (+/- 74)
- [froggy]        | 589 µs/iter (+/- 10)        | 8 µs/iter (+/- 0)        | 1,429 µs/iter (+/- 65)        | 73 µs/iter (+/- 2)
- [specs]         | 261 µs/iter (+/- 7)         | 3 µs/iter (+/- 0)         | 675 µs/iter (+/- 88)         | 87 µs/iter (+/- 1)
- [trex]          | 1,094 µs/iter (+/- 81)          | 179 µs/iter (+/- 2)          | 1,637 µs/iter (+/- 172)          | 379 µs/iter (+/- 11)
+ [calx-ecs]      | 368 µs/iter (+/- 21)      | 14 µs/iter (+/- 0)      | 678 µs/iter (+/- 25)      | 61 µs/iter (+/- 1)
+ [constellation] | 289 µs/iter (+/- 15) | 8 µs/iter (+/- 0) | 514 µs/iter (+/- 16) | 127 µs/iter (+/- 4)
+ [ecs]           | 1,231 µs/iter (+/- 46)           | 184 µs/iter (+/- 7)           | 1,295 µs/iter (+/- 81)           | 2,015 µs/iter (+/- 70)
+ [froggy]        | 489 µs/iter (+/- 15)        | 9 µs/iter (+/- 0)        | 1,082 µs/iter (+/- 33)        | 93 µs/iter (+/- 4)
+ [specs]         | 345 µs/iter (+/- 10)         | 3 µs/iter (+/- 0)         | 545 µs/iter (+/- 13)         | 44 µs/iter (+/- 1)
+ [trex]          | 1,044 µs/iter (+/- 29)          | 228 µs/iter (+/- 7)          | 1,438 µs/iter (+/- 49)          | 369 µs/iter (+/- 9)
+ [shipyard]      | 647 µs/iter (+/- 33)      | 2 µs/iter (+/- 0)      | 2,279 µs/iter (+/- 127)      | 7 µs/iter (+/- 1)
 
 [calx-ecs]: https://github.com/rsaarelm/calx-ecs
 [constellation]: https://github.com/TomGillen/constellation/
@@ -20,6 +21,7 @@ Benchmarks are located in `benches/[bench_name]_[ecs_crate_name].rs`.
 [froggy]: https://github.com/kvark/froggy
 [specs]: https://github.com/slide-rs/specs
 [trex]: https://github.com/rcolinray/trex
+[shipyard]: https://github.com/leudz/shipyard
 
 
 Visualization of benchmarks, smaller is better.
