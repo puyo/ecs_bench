@@ -1,6 +1,6 @@
 import subprocess
 
-benches = ['ecs', 'specs', 'trex', 'calx_ecs', 'froggy', 'constellation', 'shipyard']
+benches = ['ecs', 'specs', 'trex', 'calx_ecs', 'froggy', 'constellation', 'shipyard', 'legion']
 bench_targets = ['pos_vel', 'parallel']
 bench_names = ['build', 'update']
 
@@ -55,7 +55,7 @@ def parse(out, bench_target, bench_name):
 
     return (result, error)
 
-out = subprocess.check_output(["cargo", "bench"], stderr=subprocess.STDOUT)
+out = subprocess.check_output(["cargo", "+nightly", "bench"], stderr=subprocess.STDOUT)
 
 with open('README.md.tmpl', 'r') as f:
     readme = f.read()

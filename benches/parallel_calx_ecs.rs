@@ -2,9 +2,8 @@
 extern crate test;
 use test::Bencher;
 
-#[macro_use]
-extern crate serde_derive;
 extern crate serde;
+extern crate serde_derive;
 
 #[macro_use]
 extern crate calx_ecs;

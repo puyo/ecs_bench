@@ -1,8 +1,9 @@
  update pos_vel_update parallel_update
- ecs 184 7 2015 70
- specs 3 0 44 1
- trex 228 7 369 9
- calx_ecs 14 0 61 1
- froggy 9 0 93 4
- constellation 8 0 127 4
- shipyard 2 0 7 1
+ ecs 209 20 2458 1277
+ specs 3 0 40 15
+ trex 173 3 419 47
+ calx_ecs 12 0 52 23
+ froggy 16 1 49 7
+ constellation 8 0 140 19
+ shipyard 10 0 176 14
+ legion 1 0 48 5
