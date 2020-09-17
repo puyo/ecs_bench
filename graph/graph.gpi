@@ -60,3 +60,5 @@ plot \
         data using 0:i*2:i*2 \
         with labels font bold.exsmall offset column_width*-label_x(i,columns),1 center title " ",
 
+
+
