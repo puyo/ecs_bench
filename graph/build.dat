@@ -1,8 +1,9 @@
  build pos_vel_build parallel_build
- specs 258 3 1129 32
- trex 1686 65 3076 32
- calx_ecs 404 128 458 36
- froggy 451 2 763 27
- constellation 388 7 495 23
- shipyard 647 19 2024 460
- legion 570 8 771 24
+ ecs 883 108 899 33
+ specs 237 43 876 170
+ trex 1525 272 1981 363
+ calx_ecs 227 24 396 95
+ froggy 274 132 947 52
+ constellation 232 17 425 27
+ shipyard 657 18 1688 384
+ legion 385 27 664 49
