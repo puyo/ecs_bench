@@ -7,14 +7,14 @@ Benchmarks are located in `benches/[bench_name]_[ecs_crate_name].rs`.
 
  Library         | pos_vel build                 | pos_vel update                 | parallel build                 | parallel update
  --------------- |:-----------------------------:|:------------------------------:|:------------------------------:|:--------------------------------:
- [calx-ecs]      | 237 µs/iter (+/- 55)      | 12 µs/iter (+/- 0)      | 397 µs/iter (+/- 52)      | 52 µs/iter (+/- 23)
- [constellation] | 245 µs/iter (+/- 19) | 8 µs/iter (+/- 0) | 423 µs/iter (+/- 58) | 140 µs/iter (+/- 19)
- [ecs]           | 873 µs/iter (+/- 60)           | 209 µs/iter (+/- 20)           | 963 µs/iter (+/- 98)           | 2,458 µs/iter (+/- 1,277)
- [froggy]        | 281 µs/iter (+/- 27)        | 16 µs/iter (+/- 1)        | 654 µs/iter (+/- 70)        | 49 µs/iter (+/- 7)
- [specs]         | 239 µs/iter (+/- 3)         | 3 µs/iter (+/- 0)         | 910 µs/iter (+/- 424)         | 40 µs/iter (+/- 15)
- [trex]          | 1,503 µs/iter (+/- 74)          | 173 µs/iter (+/- 3)          | 1,898 µs/iter (+/- 148)          | 419 µs/iter (+/- 47)
- [shipyard]      | 675 µs/iter (+/- 28)      | 10 µs/iter (+/- 0)      | 1,710 µs/iter (+/- 212)      | 176 µs/iter (+/- 14)
- [legion]        | 396 µs/iter (+/- 54)        | 1 µs/iter (+/- 0)        | 719 µs/iter (+/- 32)        | 48 µs/iter (+/- 5)
+ [calx-ecs]      | 404 µs/iter (+/- 128)      | 19 µs/iter (+/- 0)      | 458 µs/iter (+/- 36)      | 60 µs/iter (+/- 1)
+ [constellation] | 388 µs/iter (+/- 7) | 12 µs/iter (+/- 0) | 495 µs/iter (+/- 23) | 183 µs/iter (+/- 84)
+ [ecs]           | {pos_vel_build_ecs}           | {pos_vel_update_ecs}           | {parallel_build_ecs}           | {parallel_update_ecs}
+ [froggy]        | 451 µs/iter (+/- 2)        | 24 µs/iter (+/- 1)        | 763 µs/iter (+/- 27)        | 55 µs/iter (+/- 42)
+ [specs]         | 258 µs/iter (+/- 3)         | 3 µs/iter (+/- 0)         | 1,129 µs/iter (+/- 32)         | 46 µs/iter (+/- 91)
+ [trex]          | 1,686 µs/iter (+/- 65)          | 196 µs/iter (+/- 9)          | 3,076 µs/iter (+/- 32)          | 651 µs/iter (+/- 4)
+ [shipyard]      | 647 µs/iter (+/- 19)      | 11 µs/iter (+/- 0)      | 2,024 µs/iter (+/- 460)      | 211 µs/iter (+/- 3)
+ [legion]        | 570 µs/iter (+/- 8)        | 2 µs/iter (+/- 0)        | 771 µs/iter (+/- 24)        | 43 µs/iter (+/- 10)
 
 [calx-ecs]: https://github.com/rsaarelm/calx-ecs
 [constellation]: https://github.com/TomGillen/constellation/
